@@ -117,14 +117,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 .orn-asa{top:50%;width:clamp(240px,22vw,420px);transform:translateY(-50%);--o:.13;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
 .orn-asa.l{left:-2vw;transform:translateY(-50%) scaleX(-1)}.orn-asa.r{right:-2vw;transform:translateY(-50%)}
 .orn-topo{top:140px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent)}
-/* emenda hero → trabalhos: fio de neon com a flor dele no meio */
-.emenda{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:22px;transform:translateY(-50%);pointer-events:none}
-.emenda::before,.emenda::after{content:"";height:1px;width:min(34vw,420px)}
-.emenda::before{background:linear-gradient(90deg,transparent,rgba(242,230,201,.45))}
-.emenda::after{background:linear-gradient(90deg,rgba(242,230,201,.45),transparent)}
-.emenda img{width:34px;height:auto;opacity:.75;filter:drop-shadow(0 0 8px rgba(242,230,201,.35))}
-#trabalhos{overflow:visible}
-#trabalhos .orn{clip-path:inset(0)}
+.orn-lado{top:50%;width:clamp(170px,15vw,290px);--o:.1;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent)}
+.orn-lado.l{left:1vw;transform:translateY(-50%) scaleX(-1)}.orn-lado.r{right:1vw;transform:translateY(-50%)}
 .hero::before{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(180deg,transparent,var(--bg));pointer-events:none;z-index:0}
 .orn-topo.l{left:0;transform:scaleX(-1)}.orn-topo.r{right:0;transform:none}
@@ -221,9 +215,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </header>
 
 <section id="trabalhos">
- <div class="emenda" aria-hidden="true"><img src="img/orn/flor.webp" alt="" draggable="false"></div>
- <img class="orn orn-topo l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-topo r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-lado l" src="img/orn/dragao.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-lado r m" src="img/orn/dragao.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">Realismo que olha de volta</h2>
   <p class="lead rv">Fé, animais, retratos de quem você ama e florais delicados. Cada projeto é desenhado só para você.</p>
@@ -246,8 +239,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </section>
 
 <section id="sobre">
- <img class="orn orn-canto l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-canto r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-lado l" src="img/orn/dragao.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-lado r m" src="img/orn/dragao.webp" alt="" aria-hidden="true" draggable="false">
  <div class="duo">
   <div class="ph rv"><img src="img/iago.webp" alt="Iago Cabral"></div>
   <div class="tx rv">
@@ -331,10 +324,10 @@ P.forEach(i=>['a','b'].forEach(k=>{const x=new Image();x.src=`img/h/${i}${k}.web
 function cyc(){setTimeout(()=>fr.classList.add('on'),900);setTimeout(()=>{pi=(pi+1)%P.length;const i=P[pi];fr.classList.remove('on');im.querySelector('.a').src=`img/h/${i}a.webp`;im.querySelector('.b').src=`img/h/${i}b.webp`;im.classList.remove('fade');void im.offsetWidth;im.classList.add('fade');cyc()},5000)}
 cyc();
 
-const T='fe dl dl fe rt fe rt fe dl an an an an dl an an an fe an rt rt an dl dl dl an dl fe fe an'.split(' ');
+const T='fe dl dl fe rt fe rt fe dl an an an an dl an an an fe an rt rt an dl dl an an dl fe x an'.split(' ');
 const g=document.getElementById('grid');let f='*',lim=24,vis=[];
 const src=i=>`img/g/${String(i).padStart(2,'0')}.webp`;
-function draw(){vis=T.map((t,i)=>({t,i})).filter(o=>f=='*'||o.t==f);g.innerHTML=vis.slice(0,lim).map((o,k)=>`<a href="${src(o.i)}" data-k="${k}"><img src="${src(o.i)}" alt="Tatuagem de Iago Cabral"></a>`).join('');document.getElementById('mais').parentNode.hidden=vis.length<=lim}
+function draw(){vis=T.map((t,i)=>({t,i})).filter(o=>o.t!='x'&&(f=='*'||o.t==f));g.innerHTML=vis.slice(0,lim).map((o,k)=>`<a href="${src(o.i)}" data-k="${k}"><img src="${src(o.i)}" alt="Tatuagem de Iago Cabral"></a>`).join('');document.getElementById('mais').parentNode.hidden=vis.length<=lim}
 draw();
 document.getElementById('filt').onclick=e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#filt button').forEach(x=>x.classList.toggle('on',x==b));f=b.dataset.f;lim=24;draw()};
 document.getElementById('mais').onclick=()=>{lim=99;draw()};
