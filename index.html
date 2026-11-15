@@ -56,7 +56,15 @@ nav ul a:hover{color:var(--neon)}
 .frame.on img.b{clip-path:inset(0 0 0 0);transition:clip-path .75s var(--e)}
 .frame .im.fade{animation:fd .35s var(--e)}
 @keyframes fd{from{opacity:0}to{opacity:1}}
-.tag{position:absolute;top:-17px;left:50%;transform:translateX(-50%);background:#fff;color:#000;font:700 clamp(15px,1.4vw,19px)/1 Antonio,sans-serif;text-transform:uppercase;letter-spacing:.02em;padding:9px 14px;white-space:nowrap;z-index:2;display:grid}
+.frame canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.frame.gl .im img{visibility:hidden}
+/* placa de neon acendendo */
+.frame{animation:ign .62s steps(1,end) both}
+@keyframes ign{0%{border-color:#3a382f;box-shadow:none}12%{border-color:var(--neon);box-shadow:0 0 0 1px rgba(242,230,201,.12),0 0 38px rgba(242,230,201,.22),inset 0 0 26px rgba(242,230,201,.12)}20%{border-color:#3a382f;box-shadow:none}34%{border-color:var(--neon);box-shadow:0 0 0 1px rgba(242,230,201,.12),0 0 38px rgba(242,230,201,.22),inset 0 0 26px rgba(242,230,201,.12)}40%{border-color:#56523f;box-shadow:0 0 14px rgba(242,230,201,.08)}52%,100%{border-color:var(--neon);box-shadow:0 0 0 1px rgba(242,230,201,.12),0 0 38px rgba(242,230,201,.22),inset 0 0 26px rgba(242,230,201,.12)}}
+.frame::after{content:"";position:absolute;inset:-1.5px;pointer-events:none;box-shadow:0 0 70px rgba(242,230,201,.35),inset 0 0 40px rgba(242,230,201,.18);opacity:0;transition:opacity .9s var(--e)}
+.frame.hit::after{opacity:1;transition:opacity .12s linear}
+.tag{animation:up .5s var(--e) .35s both}
+.tag{position:absolute;top:-17px;left:50%;translate:-50% 0;background:#fff;color:#000;font:700 clamp(15px,1.4vw,19px)/1 Antonio,sans-serif;text-transform:uppercase;letter-spacing:.02em;padding:9px 14px;white-space:nowrap;z-index:2;display:grid}
 .tag span{grid-area:1/1;text-align:center;transition:opacity .3s var(--e),transform .3s var(--e)}
 .tag .t2{opacity:0;transform:translateY(6px)}
 .frame.on .tag .t1{opacity:0;transform:translateY(-6px)}
@@ -114,19 +122,10 @@ section,.hero{position:relative;overflow:hidden}
 section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 .orn{position:absolute;z-index:0;pointer-events:none;user-select:none;-webkit-user-drag:none;height:auto;opacity:var(--o,.1)}
 .orn.m{transform:scaleX(-1)}
-.orn-asa{top:50%;width:clamp(240px,22vw,420px);transform:translateY(-50%);--o:.13;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
-.orn-asa.l{left:-2vw;transform:translateY(-50%) scaleX(-1)}.orn-asa.r{right:-2vw;transform:translateY(-50%)}
-.orn-topo{top:140px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent)}
-.orn-lado{top:50%;width:clamp(170px,15vw,290px);--o:.1;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 72%,transparent)}
-.orn-lado.l{left:1vw;transform:translateY(-50%) scaleX(-1)}.orn-lado.r{right:1vw;transform:translateY(-50%)}
 .hero::before{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(180deg,transparent,var(--bg));pointer-events:none;z-index:0}
-.orn-topo.l{left:0;transform:scaleX(-1)}.orn-topo.r{right:0;transform:none}
 .orn-canto{bottom:90px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(0deg,transparent,#000 22%,#000 62%,transparent);mask-image:linear-gradient(0deg,transparent,#000 22%,#000 62%,transparent)}
 .orn-canto.l{left:0;transform:scaleX(-1)}.orn-canto.r{right:0;transform:none}
-.fio{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 26px;max-width:220px;color:var(--neon);opacity:.5}
-.fio::before,.fio::after{content:"";flex:1;height:1px;background:currentColor}
-.fio img{width:28px;opacity:.9}
 
 /* pedido de orçamento */
 .form{max-width:760px;margin:0 auto;display:grid;gap:22px;padding:clamp(22px,4vw,44px);border:1px solid var(--line);background:rgba(12,14,11,.82);box-shadow:0 0 0 1px rgba(242,230,201,.06),0 0 40px rgba(242,230,201,.06)}
@@ -181,8 +180,7 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
  .duas{grid-template-columns:1fr;gap:22px}
  .chips span{padding:10px 12px;font-size:12px}
  .orn{--o:.06!important}
- .orn-asa{width:40vw;--o:.08!important}
-}
+ }
 @media(max-width:380px){
  .btns{grid-template-columns:1fr}
  .filt button{padding:11px 12px;font-size:12px}
@@ -201,8 +199,6 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </nav>
 
 <header class="hero">
- <img class="orn orn-asa l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-asa r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="stage">
   <div><h1 class="nm cl">Iago</h1><p class="side" style="text-align:right">Realismo<br>preto e cinza</p></div>
   <div class="frame" id="fr">
@@ -215,8 +211,6 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </header>
 
 <section id="trabalhos">
- <img class="orn orn-lado l" src="img/orn/borboleta.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-lado r m" src="img/orn/borboleta.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">Realismo que olha de volta</h2>
   <p class="lead rv">Fé, animais, retratos de quem você ama e florais delicados. Cada projeto é desenhado só para você.</p>
@@ -229,8 +223,6 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </section>
 
 <section class="prova" id="entrega">
- <img class="orn orn-canto l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-canto r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">O que pediram. O que eu entreguei.</h2>
   <p class="lead rv">“Ele trouxe a ideia, eu só dei uma leve exagerada na entrega.” Você traz o rascunho, a foto ou a tattoo antiga. O projeto sai daqui.</p>
@@ -239,8 +231,6 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </section>
 
 <section id="sobre">
- <img class="orn orn-lado l" src="img/orn/borboleta.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-lado r m" src="img/orn/borboleta.webp" alt="" aria-hidden="true" draggable="false">
  <div class="duo">
   <div class="ph rv"><img src="img/iago.webp" alt="Iago Cabral"></div>
   <div class="tx rv">
@@ -320,9 +310,72 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 
 <script>
 const P=[1,2,0,3,4];let pi=0;const fr=document.getElementById('fr'),im=document.getElementById('im');
-P.forEach(i=>['a','b'].forEach(k=>{const x=new Image();x.src=`img/h/${i}${k}.webp`}));
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const IM={};P.forEach(i=>['a','b'].forEach(k=>{const x=new Image();x.src=`img/h/${i}${k}.webp`;IM[i+k]=x}));
+// reserva sem WebGL: cortina de baixo pra cima
 function cyc(){setTimeout(()=>fr.classList.add('on'),900);setTimeout(()=>{pi=(pi+1)%P.length;const i=P[pi];fr.classList.remove('on');im.querySelector('.a').src=`img/h/${i}a.webp`;im.querySelector('.b').src=`img/h/${i}b.webp`;im.classList.remove('fade');void im.offsetWidth;im.classList.add('fade');cyc()},5000)}
-cyc();
+// tinta entrando na pele: o rascunho do cliente vira o realismo a partir do rosto
+function inkHero(){
+ const cv=document.createElement('canvas'),gl=cv.getContext('webgl',{alpha:false,antialias:false,premultipliedAlpha:false});
+ if(!gl)return false;
+ const vs='attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0,1);}';
+ const fs=`precision highp float;varying vec2 v;uniform sampler2D A,B,C;uniform float t,f,sd;uniform vec2 o,sc;
+ float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+ float n(vec2 p){vec2 i=floor(p),u=fract(p);u=u*u*(3.-2.*u);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+1.),u.x),u.y);}
+ float fb(vec2 p){float a=.5,s=0.;for(int k=0;k<5;k++){s+=a*n(p);p=p*2.03+sd;a*=.5;}return s;}
+ void main(){
+  vec2 uv=(v-.5)*sc+.5;uv.y=1.-uv.y;
+  vec2 q=uv-o;q.x*=.8;
+  float g=fb(uv*5.+sd), fld=length(q)*1.25+(g-.5)*.62+(fb(uv*22.+sd*2.)-.5)*.1;
+  float th=t*1.55-.06;
+  float m=smoothstep(th+.012,th-.05,fld);
+  float e=exp(-pow((fld-th)/.045,2.))*step(.001,t)*step(t,.999);
+  vec2 w=vec2(fb(uv*9.+3.),fb(uv*9.-7.))-.5;
+  vec3 a=texture2D(A,uv+w*e*.018).rgb, b=texture2D(B,uv+w*e*.03).rgb;
+  vec3 c=mix(a,b,m);
+  c*=1.-e*.62;
+  float r=exp(-pow((fld-th-.06)/.03,2.))*step(.001,t)*step(t,.999);
+  c+=vec3(.95,.9,.79)*r*.22;
+  c=mix(texture2D(C,uv).rgb,c,f);
+  gl_FragColor=vec4(c,1.);}`;
+ const sh=(ty,src)=>{const x=gl.createShader(ty);gl.shaderSource(x,src);gl.compileShader(x);return x};
+ const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
+ if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return false;
+ gl.useProgram(pr);
+ gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+ const pl=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+ const U=k=>gl.getUniformLocation(pr,k);['A','B','C'].forEach((k,i)=>gl.uniform1i(U(k),i));
+ const TX={};
+ const tex=k=>{if(TX[k])return TX[k];const x=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,x);
+  [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(p=>gl.texParameteri(gl.TEXTURE_2D,p,gl.CLAMP_TO_EDGE));
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,IM[k]);return TX[k]=x};
+ const bind=(u,k)=>{gl.activeTexture(gl.TEXTURE0+u);gl.bindTexture(gl.TEXTURE_2D,tex(k))};
+ // onde a tinta nasce em cada par (rosto/centro da peça)
+ const O={0:[.5,.42],1:[.5,.36],2:[.5,.45],3:[.5,.42],4:[.5,.42]};
+ function size(){const r=im.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);gl.viewport(0,0,cv.width,cv.height);
+  const ar=r.width/r.height,ia=960/1200;gl.uniform2f(U('sc'),ar>ia?1:ar/ia,ar>ia?ia/ar:1)}
+ const FZ=+(new URLSearchParams(location.search).get('p')??-1);
+ const ez=x=>1-Math.pow(1-x,3);
+ let cur=P[0],prev=P[0],t0=0,first=true,hit=false,vis=true,raf=0;
+ function set(){bind(0,cur+'a');bind(1,cur+'b');bind(2,prev+'b');gl.uniform2f(U('o'),...O[cur]);gl.uniform1f(U('sd'),Math.random()*40)}
+ function draw(now){
+  raf=requestAnimationFrame(draw);if(!vis)return;
+  if(!t0)t0=now;let e=now-t0;
+  const S=first?520:620, D=1100, F=first?0:320;
+  const nx=P[(pi+1)%P.length];if(e>=5000&&IM[nx+'a'].complete&&IM[nx+'b'].complete){t0=now;e=0;first=false;prev=cur;pi=(pi+1)%P.length;cur=P[pi];set();fr.classList.remove('on');hit=false}
+  let ff=first?1:Math.min(1,e/320), p=ez(Math.min(1,Math.max(0,(e-S)/D)));
+  if(FZ>=0){p=FZ;e=Math.min(e,4000)}
+  if(p>.12)fr.classList.add('on');
+  if(p>=1&&!hit){hit=true;fr.classList.add('hit');setTimeout(()=>fr.classList.remove('hit'),180)}
+  gl.uniform1f(U('t'),p);gl.uniform1f(U('f'),ff);gl.drawArrays(gl.TRIANGLES,0,3)}
+ const go=()=>{im.appendChild(cv);size();set();fr.classList.add('gl');raf=requestAnimationFrame(draw)};
+ const need=[P[0]+'a',P[0]+'b'];let left=need.length;
+ need.forEach(k=>{const x=IM[k];if(x.complete&&x.naturalWidth){if(!--left)go()}else x.addEventListener('load',()=>{if(!--left)go()},{once:true})});
+ addEventListener('resize',()=>{if(cv.width)size()});
+ new IntersectionObserver(es=>{vis=es[0].isIntersecting}).observe(fr);
+ return true}
+if(RM){fr.classList.add('on')}else if(!inkHero())cyc();
 
 const T='fe dl dl fe rt fe rt fe dl an an an an dl an an an fe an rt rt an dl dl an an dl fe x an'.split(' ');
 const g=document.getElementById('grid');let f='*',lim=24,vis=[];
