@@ -101,12 +101,25 @@ nav ul a:hover{color:var(--neon)}
 .more{text-align:center;margin-top:34px}
 
 .prova{background:var(--bg2)}
-.pares{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:1040px;margin:0 auto}
-.par{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.par figure{position:relative}
-.par img{aspect-ratio:4/5;object-fit:cover;width:100%}
-.par figcaption{position:absolute;top:10px;left:50%;transform:translateX(-50%);background:#fff;color:#000;font:700 13px/1 Antonio,sans-serif;text-transform:uppercase;padding:6px 9px;white-space:nowrap}
-
+.comp-area{display:grid;grid-template-columns:minmax(0,480px) minmax(0,440px);gap:clamp(32px,5vw,72px);align-items:center;justify-content:center}
+.comp{position:relative;aspect-ratio:4/5;overflow:hidden;background:#000;user-select:none;touch-action:pan-y;box-shadow:0 0 0 1px var(--line),0 30px 60px -20px rgba(0,0,0,.8)}
+.comp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;pointer-events:none;transition:opacity .35s var(--e)}
+.comp-a{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.comp-linha{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:var(--neon);box-shadow:0 0 12px rgba(214,154,85,.6);pointer-events:none}
+.comp-linha span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);padding:9px 10px;background:var(--neon);color:var(--bg);font:700 18px/1 Hanken,sans-serif;letter-spacing:.1em;white-space:nowrap}
+.comp-rot{position:absolute;top:14px;background:#fff;color:#000;font:700 14px/1 Antonio,sans-serif;text-transform:uppercase;letter-spacing:.03em;padding:7px 10px;pointer-events:none}
+.r-a{left:14px}.r-b{right:14px}
+.comp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.comp.trocando img{opacity:0}
+.comp-lista{text-align:center}
+.comp-tipo{font:600 12px/1 Hanken,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--neon)}
+.comp-leg{margin:12px 0 26px;font:700 clamp(1.6rem,2.6vw,2.3rem)/1.12 Antonio,sans-serif;text-transform:uppercase;min-height:2.3em;text-wrap:balance}
+.comp-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.comp-tabs button{padding:0;border:1px solid transparent;background:#000;cursor:pointer;aspect-ratio:4/5;overflow:hidden;opacity:.5;transition:opacity .3s var(--e),border-color .3s var(--e)}
+.comp-tabs button[aria-selected="true"]{opacity:1;border-color:var(--neon)}
+.comp-tabs button:hover{opacity:1}
+.comp-tabs img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none}
+.comp-aviso{margin:24px auto 26px;max-width:400px;font-size:15px;color:var(--mut)}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto}
 .duo img{aspect-ratio:4/5;object-fit:cover;width:100%}
 .duo .tx{text-align:center}
@@ -196,7 +209,8 @@ section>.wrap,section>.duo{position:relative;z-index:1}
  .btn{padding:0 12px;font-size:13px;letter-spacing:.03em}
  section{padding:80px 16px}
  .grid{grid-template-columns:1fr 1fr;gap:6px}
- .pares{grid-template-columns:1fr}
+ .comp-area{grid-template-columns:minmax(0,440px);gap:28px}
+ .comp-leg{min-height:0;margin-bottom:20px}
  .duo{grid-template-columns:1fr;gap:36px}
  .duo .ph{max-width:440px;margin:0 auto;width:100%}
  .estudio .duo .ph{order:2}
@@ -259,9 +273,30 @@ section>.wrap,section>.duo{position:relative;z-index:1}
 
 <section class="prova" id="entrega">
  <div class="wrap">
-  <h2 class="rv">O que pediram. O que eu entreguei.</h2>
+  <h2 class="rv">O que pediram.<br> O que eu entreguei.</h2>
   <p class="lead rv">“Ele trouxe a ideia, eu só dei uma leve exagerada na entrega.” Você traz o rascunho, a foto ou a tattoo antiga. O projeto sai daqui.</p>
-  <div class="pares" id="pares"></div>
+  <div class="comp-area rv">
+   <div class="comp" id="comp" style="--x:50%">
+    <img class="comp-b" src="img/h/1b.webp" alt="O que Iago entregou">
+    <div class="comp-a"><img src="img/h/1a.webp" alt="O que o cliente pediu"></div>
+    <span class="comp-rot r-a">Pediu</span><span class="comp-rot r-b">Entreguei</span>
+    <div class="comp-linha" aria-hidden="true"><span>‹ ›</span></div>
+    <input type="range" min="0" max="100" value="50" aria-label="Arraste para comparar o que o cliente pediu e o que foi entregue">
+   </div>
+   <div class="comp-lista">
+    <p class="comp-tipo" id="comp-tipo">Perna</p>
+    <p class="comp-leg" id="comp-leg">Samurai e o duelo, do rabisco ao realismo</p>
+    <div class="comp-tabs" role="tablist" aria-label="Escolher trabalho">
+     <button type="button" role="tab" aria-selected="true" data-par="1" data-tipo="Perna" data-leg="Samurai e o duelo, do rabisco ao realismo"><img src="img/h/1b.webp" alt="Samurai e o duelo, do rabisco ao realismo"></button>
+     <button type="button" role="tab" aria-selected="false" data-par="2" data-tipo="Costas" data-leg="Guerreiro alado com a medalha de São Bento"><img src="img/h/2b.webp" alt="Guerreiro alado com a medalha de São Bento"></button>
+     <button type="button" role="tab" aria-selected="false" data-par="0" data-tipo="Antebraço" data-leg="Guerreira de capuz, com lágrima e sombra"><img src="img/h/0b.webp" alt="Guerreira de capuz, com lágrima e sombra"></button>
+     <button type="button" role="tab" aria-selected="false" data-par="3" data-tipo="Quadril" data-leg="Dragão e peônia ganhando volume"><img src="img/h/3b.webp" alt="Dragão e peônia ganhando volume"></button>
+     <button type="button" role="tab" aria-selected="false" data-par="4" data-tipo="Antebraço" data-leg="Leoa e filhotes com pelagem de verdade"><img src="img/h/4b.webp" alt="Leoa e filhotes com pelagem de verdade"></button>
+    </div>
+    <p class="comp-aviso">Traga o rascunho, a foto de referência ou a tattoo antiga. O desenho final é feito para o seu corpo antes da primeira agulha.</p>
+    <a class="btn p" href="#marcar">Quero o meu projeto</a>
+   </div>
+  </div>
  </div>
 </section>
 
@@ -396,7 +431,21 @@ g.onclick=e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();show
 lb.onclick=e=>{if(e.target.classList.contains('pv'))show(li-1);else if(e.target.classList.contains('nx'))show(li+1);else if(e.target!==lbi)lb.hidden=true};
 addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key=='Escape')lb.hidden=true;if(e.key=='ArrowLeft')show(li-1);if(e.key=='ArrowRight')show(li+1)});
 
-document.getElementById('pares').innerHTML=[1,2,3,4].map(i=>`<div class="par rv"><figure><img src="img/h/${i}a.webp" alt="Ideia do cliente"><figcaption>Pediu</figcaption></figure><figure><img src="img/h/${i}b.webp" alt="Tatuagem entregue"><figcaption>Entreguei</figcaption></figure></div>`).join('');
+// comparador Pediu x Entreguei: a linha segue o dedo/mouse; as miniaturas trocam o par
+(function(){const comp=document.getElementById('comp');if(!comp)return;
+ const rng=comp.querySelector('input'),b=comp.querySelector('.comp-b'),a=comp.querySelector('.comp-a img'),pos=v=>comp.style.setProperty('--x',v+'%');
+ rng.addEventListener('input',()=>pos(rng.value));
+ const tabs=[...document.querySelectorAll('.comp-tabs button')];
+ tabs.forEach(t=>t.addEventListener('click',()=>{if(t.getAttribute('aria-selected')==='true')return;
+  tabs.forEach(o=>o.setAttribute('aria-selected',o===t));
+  document.getElementById('comp-tipo').textContent=t.dataset.tipo;document.getElementById('comp-leg').textContent=t.dataset.leg;
+  comp.classList.add('trocando');const id=t.dataset.par,na=new Image(),nb=new Image();let k=0;
+  const ok=()=>{if(++k<2)return;b.src=nb.src;a.src=na.src;rng.value=50;pos(50);requestAnimationFrame(()=>comp.classList.remove('trocando'))};
+  setTimeout(()=>{na.onload=nb.onload=ok;nb.src=`img/h/${id}b.webp`;na.src=`img/h/${id}a.webp`},200)}));
+ if(!RM)new IntersectionObserver(([e],o)=>{if(!e.isIntersecting)return;o.disconnect();const t0=performance.now();
+  const anda=t=>{const k=Math.min(1,(t-t0)/1800),v=50+Math.sin(k*Math.PI*2)*24*(1-k);pos(v);rng.value=v;if(k<1)requestAnimationFrame(anda)};
+  setTimeout(()=>requestAnimationFrame(anda),400)},{threshold:.6}).observe(comp);
+})();
 
 const form=document.getElementById('form'),erro=document.getElementById('erro');
 form.addEventListener('submit',e=>{e.preventDefault();const f=new FormData(form),nome=(f.get('nome')||'').trim();
