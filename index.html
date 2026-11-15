@@ -116,9 +116,19 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 .orn.m{transform:scaleX(-1)}
 .orn-asa{top:50%;width:clamp(240px,22vw,420px);transform:translateY(-50%);--o:.13;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
 .orn-asa.l{left:-2vw;transform:translateY(-50%) scaleX(-1)}.orn-asa.r{right:-2vw;transform:translateY(-50%)}
-.orn-topo{top:-30px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(180deg,#000 45%,transparent);mask-image:linear-gradient(180deg,#000 45%,transparent)}
+.orn-topo{top:140px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 62%,transparent)}
+/* emenda hero → trabalhos: fio de neon com a flor dele no meio */
+.emenda{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:22px;transform:translateY(-50%);pointer-events:none}
+.emenda::before,.emenda::after{content:"";height:1px;width:min(34vw,420px)}
+.emenda::before{background:linear-gradient(90deg,transparent,rgba(242,230,201,.45))}
+.emenda::after{background:linear-gradient(90deg,rgba(242,230,201,.45),transparent)}
+.emenda img{width:34px;height:auto;opacity:.75;filter:drop-shadow(0 0 8px rgba(242,230,201,.35))}
+#trabalhos{overflow:visible}
+#trabalhos .orn{clip-path:inset(0)}
+.hero::before{-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(180deg,transparent,var(--bg));pointer-events:none;z-index:0}
 .orn-topo.l{left:0;transform:scaleX(-1)}.orn-topo.r{right:0;transform:none}
-.orn-canto{bottom:-20px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(0deg,#000 50%,transparent);mask-image:linear-gradient(0deg,#000 50%,transparent)}
+.orn-canto{bottom:90px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(0deg,transparent,#000 22%,#000 62%,transparent);mask-image:linear-gradient(0deg,transparent,#000 22%,#000 62%,transparent)}
 .orn-canto.l{left:0;transform:scaleX(-1)}.orn-canto.r{right:0;transform:none}
 .fio{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 26px;max-width:220px;color:var(--neon);opacity:.5}
 .fio::before,.fio::after{content:"";flex:1;height:1px;background:currentColor}
@@ -211,6 +221,7 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </header>
 
 <section id="trabalhos">
+ <div class="emenda" aria-hidden="true"><img src="img/orn/flor.webp" alt="" draggable="false"></div>
  <img class="orn orn-topo l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <img class="orn orn-topo r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
