@@ -114,12 +114,12 @@ section,.hero{position:relative;overflow:hidden}
 section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 .orn{position:absolute;z-index:0;pointer-events:none;user-select:none;-webkit-user-drag:none;height:auto;opacity:var(--o,.1)}
 .orn.m{transform:scaleX(-1)}
-.orn-asa{top:50%;width:clamp(220px,24vw,440px);margin-top:calc(clamp(220px,24vw,440px) * -.62);--o:.09;-webkit-mask-image:linear-gradient(90deg,#000 50%,transparent);mask-image:linear-gradient(90deg,#000 50%,transparent)}
-.orn-asa.l{left:0}.orn-asa.r{right:0}
-.orn-med{left:50%;top:40px;width:clamp(260px,30vw,460px);margin-left:calc(clamp(260px,30vw,460px) / -2);--o:.07;-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent);mask-image:linear-gradient(180deg,#000 40%,transparent)}
-.orn-asas{left:50%;bottom:-40px;width:clamp(320px,40vw,620px);margin-left:calc(clamp(320px,40vw,620px) / -2);--o:.06;-webkit-mask-image:linear-gradient(0deg,#000 45%,transparent);mask-image:linear-gradient(0deg,#000 45%,transparent)}
-.orn-canto{bottom:0;width:clamp(180px,18vw,320px);--o:.08;-webkit-mask-image:linear-gradient(0deg,#000 50%,transparent);mask-image:linear-gradient(0deg,#000 50%,transparent)}
-.orn-canto.l{left:0}.orn-canto.r{right:0}
+.orn-asa{top:50%;width:clamp(240px,22vw,420px);transform:translateY(-50%);--o:.13;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
+.orn-asa.l{left:-2vw;transform:translateY(-50%) scaleX(-1)}.orn-asa.r{right:-2vw;transform:translateY(-50%)}
+.orn-topo{top:-30px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(180deg,#000 45%,transparent);mask-image:linear-gradient(180deg,#000 45%,transparent)}
+.orn-topo.l{left:0;transform:scaleX(-1)}.orn-topo.r{right:0;transform:none}
+.orn-canto{bottom:-20px;width:clamp(180px,17vw,320px);--o:.09;-webkit-mask-image:linear-gradient(0deg,#000 50%,transparent);mask-image:linear-gradient(0deg,#000 50%,transparent)}
+.orn-canto.l{left:0;transform:scaleX(-1)}.orn-canto.r{right:0;transform:none}
 .fio{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 26px;max-width:220px;color:var(--neon);opacity:.5}
 .fio::before,.fio::after{content:"";flex:1;height:1px;background:currentColor}
 .fio img{width:28px;opacity:.9}
@@ -177,7 +177,7 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
  .duas{grid-template-columns:1fr;gap:22px}
  .chips span{padding:10px 12px;font-size:12px}
  .orn{--o:.06!important}
- .orn-asa{width:46vw;margin-top:-28vw}
+ .orn-asa{width:40vw;--o:.08!important}
 }
 @media(max-width:380px){
  .btns{grid-template-columns:1fr}
@@ -197,8 +197,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </nav>
 
 <header class="hero">
- <img class="orn orn-asa l" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-asa r m" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-asa l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-asa r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="stage">
   <div><h1 class="nm cl">Iago</h1><p class="side" style="text-align:right">Realismo<br>preto e cinza</p></div>
   <div class="frame" id="fr">
@@ -211,7 +211,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </header>
 
 <section id="trabalhos">
- <img class="orn orn-med" src="img/orn/medalha.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-topo l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-topo r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">Realismo que olha de volta</h2>
   <p class="lead rv">Fé, animais, retratos de quem você ama e florais delicados. Cada projeto é desenhado só para você.</p>
@@ -224,8 +225,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </section>
 
 <section class="prova" id="entrega">
- <img class="orn orn-canto l" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-canto r m" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">O que pediram. O que eu entreguei.</h2>
   <p class="lead rv">“Ele trouxe a ideia, eu só dei uma leve exagerada na entrega.” Você traz o rascunho, a foto ou a tattoo antiga. O projeto sai daqui.</p>
@@ -234,7 +235,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </section>
 
 <section id="sobre">
- <img class="orn orn-asas" src="img/orn/asas.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="duo">
   <div class="ph rv"><img src="img/iago.webp" alt="Iago Cabral"></div>
   <div class="tx rv">
@@ -261,8 +263,8 @@ section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
 </section>
 
 <section id="marcar">
- <img class="orn orn-canto l" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
- <img class="orn orn-canto r m" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto l" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto r m" src="img/orn/floral.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">Pedir orçamento</h2>
   <p class="lead rv">Agendamento somente com sinal. Preencha e o pedido chega pronto no WhatsApp do Iago.</p>
