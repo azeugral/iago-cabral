@@ -109,6 +109,44 @@ footer p+p{margin-top:6px}
 .lb button{position:absolute;background:rgba(12,14,11,.6);border:1px solid var(--line);color:var(--ink);width:52px;height:52px;font-size:22px;cursor:pointer}
 .lb .x{top:18px;right:18px}.lb .pv{left:18px;top:50%}.lb .nx{right:18px;top:50%}
 
+/* adornos: traço do próprio Iago, estático e apagado */
+section,.hero{position:relative;overflow:hidden}
+section>.wrap,section>.duo,.stage,.hero .btns{position:relative;z-index:1}
+.orn{position:absolute;z-index:0;pointer-events:none;user-select:none;-webkit-user-drag:none;height:auto;opacity:var(--o,.1)}
+.orn.m{transform:scaleX(-1)}
+.orn-asa{top:50%;width:clamp(220px,24vw,440px);margin-top:calc(clamp(220px,24vw,440px) * -.62);--o:.09;-webkit-mask-image:linear-gradient(90deg,#000 50%,transparent);mask-image:linear-gradient(90deg,#000 50%,transparent)}
+.orn-asa.l{left:0}.orn-asa.r{right:0}
+.orn-med{left:50%;top:40px;width:clamp(260px,30vw,460px);margin-left:calc(clamp(260px,30vw,460px) / -2);--o:.07;-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent);mask-image:linear-gradient(180deg,#000 40%,transparent)}
+.orn-asas{left:50%;bottom:-40px;width:clamp(320px,40vw,620px);margin-left:calc(clamp(320px,40vw,620px) / -2);--o:.06;-webkit-mask-image:linear-gradient(0deg,#000 45%,transparent);mask-image:linear-gradient(0deg,#000 45%,transparent)}
+.orn-canto{bottom:0;width:clamp(180px,18vw,320px);--o:.08;-webkit-mask-image:linear-gradient(0deg,#000 50%,transparent);mask-image:linear-gradient(0deg,#000 50%,transparent)}
+.orn-canto.l{left:0}.orn-canto.r{right:0}
+.fio{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 26px;max-width:220px;color:var(--neon);opacity:.5}
+.fio::before,.fio::after{content:"";flex:1;height:1px;background:currentColor}
+.fio img{width:28px;opacity:.9}
+
+/* pedido de orçamento */
+.form{max-width:760px;margin:0 auto;display:grid;gap:22px;padding:clamp(22px,4vw,44px);border:1px solid var(--line);background:rgba(12,14,11,.82);box-shadow:0 0 0 1px rgba(242,230,201,.06),0 0 40px rgba(242,230,201,.06)}
+.campo{display:grid;gap:9px;border:0;min-width:0}
+.campo>span,.campo legend{font:700 15px/1 Antonio,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--neon);padding:0;margin:0 0 9px}
+.campo>span{margin:0}
+.form input:not([type=radio]),.form select,.form textarea{width:100%;font:400 17px/1.4 Hanken,sans-serif;color:var(--ink);background:transparent;border:0;border-bottom:1.5px solid #3a4034;padding:10px 0;outline:0;transition:border-color .3s var(--e)}
+.form select{appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f2e6c9' stroke-width='1.6'/%3E%3C/svg%3E") right 4px center no-repeat;padding-right:26px}
+.form select option{background:var(--bg)}
+.form textarea{border:1.5px solid #3a4034;padding:12px;resize:vertical;min-height:110px}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--neon)}
+.form ::placeholder{color:#6f6a5f}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;border:1px solid #3a4034;padding:11px 15px;font:600 13px/1 Hanken,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);transition:all .3s var(--e)}
+.chips input:checked+span{border-color:var(--neon);background:var(--neon);color:var(--bg)}
+.chips input:focus-visible+span{outline:2px solid var(--neon);outline-offset:3px}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.erro{color:#e9a48f;font-size:14px;text-align:center}
+.form .btn{width:100%}
+.form small{display:block;text-align:center;color:var(--mut);font-size:13px;line-height:1.5}
+.lb .quero{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:auto;height:auto;font-size:14px;padding:0 24px;background:var(--neon);color:var(--bg);border-color:var(--neon)}
+
 .rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--e),transform .7s var(--e)}
 .rv.in{opacity:1;transform:none}
 
@@ -136,6 +174,10 @@ footer p+p{margin-top:6px}
  .duo .ph{max-width:440px;margin:0 auto;width:100%}
  .estudio .duo .ph{order:2}
  .map{height:280px}
+ .duas{grid-template-columns:1fr;gap:22px}
+ .chips span{padding:10px 12px;font-size:12px}
+ .orn{--o:.06!important}
+ .orn-asa{width:46vw;margin-top:-28vw}
 }
 @media(max-width:380px){
  .btns{grid-template-columns:1fr}
@@ -155,6 +197,8 @@ footer p+p{margin-top:6px}
 </nav>
 
 <header class="hero">
+ <img class="orn orn-asa l" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-asa r m" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
  <div class="stage">
   <div><h1 class="nm cl">Iago</h1><p class="side" style="text-align:right">Realismo<br>preto e cinza</p></div>
   <div class="frame" id="fr">
@@ -167,6 +211,7 @@ footer p+p{margin-top:6px}
 </header>
 
 <section id="trabalhos">
+ <img class="orn orn-med" src="img/orn/medalha.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">Realismo que olha de volta</h2>
   <p class="lead rv">Fé, animais, retratos de quem você ama e florais delicados. Cada projeto é desenhado só para você.</p>
@@ -179,6 +224,8 @@ footer p+p{margin-top:6px}
 </section>
 
 <section class="prova" id="entrega">
+ <img class="orn orn-canto l" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto r m" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
   <h2 class="rv">O que pediram. O que eu entreguei.</h2>
   <p class="lead rv">“Ele trouxe a ideia, eu só dei uma leve exagerada na entrega.” Você traz o rascunho, a foto ou a tattoo antiga. O projeto sai daqui.</p>
@@ -187,6 +234,7 @@ footer p+p{margin-top:6px}
 </section>
 
 <section id="sobre">
+ <img class="orn orn-asas" src="img/orn/asas.webp" alt="" aria-hidden="true" draggable="false">
  <div class="duo">
   <div class="ph rv"><img src="img/iago.webp" alt="Iago Cabral"></div>
   <div class="tx rv">
@@ -213,18 +261,46 @@ footer p+p{margin-top:6px}
 </section>
 
 <section id="marcar">
+ <img class="orn orn-canto l" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
+ <img class="orn orn-canto r m" src="img/orn/asa.webp" alt="" aria-hidden="true" draggable="false">
  <div class="wrap">
-  <h2 class="rv">Como marcar</h2>
-  <p class="lead rv">Agendamento somente com sinal. Leva poucos minutos.</p>
+  <h2 class="rv">Pedir orçamento</h2>
+  <p class="lead rv">Agendamento somente com sinal. Preencha e o pedido chega pronto no WhatsApp do Iago.</p>
   <div class="passos rv">
    <div><b>Ideia</b><p>Conte o que quer, o local do corpo e o tamanho.</p></div>
    <div><b>Referências</b><p>Mande fotos, rascunhos ou a tattoo que quer cobrir.</p></div>
    <div><b>Orçamento</b><p>Você recebe valor e número de sessões.</p></div>
    <div><b>Sinal</b><p>Com o sinal, sua data fica garantida.</p></div>
   </div>
-  <p class="msg" id="msg">Olá, Iago! Vim pelo site e quero fazer um orçamento. Minha ideia é: </p>
-  <div class="btns"><a class="btn p" id="wa" href="https://wa.me/message/L3C7RKFIZAINI1" target="_blank" rel="noopener">Pedir no WhatsApp</a><a class="btn s" id="dm" href="https://www.instagram.com/m/iagocabraltattoo/" target="_blank" rel="noopener">Pedir no Direct</a></div>
-  <p class="cop" id="cop"></p>
+  <form class="form rv" id="form" novalidate>
+   <label class="campo"><span>Seu nome</span><input name="nome" autocomplete="given-name" required></label>
+   <fieldset class="campo"><legend>O que você quer tatuar</legend>
+    <div class="chips">
+     <label><input type="radio" name="tema" value="Fé" checked><span>Fé</span></label>
+     <label><input type="radio" name="tema" value="Animal"><span>Animal</span></label>
+     <label><input type="radio" name="tema" value="Retrato"><span>Retrato</span></label>
+     <label><input type="radio" name="tema" value="Floral delicado"><span>Floral delicado</span></label>
+     <label><input type="radio" name="tema" value="Outra ideia"><span>Outra ideia</span></label>
+    </div>
+   </fieldset>
+   <fieldset class="campo"><legend>É cobertura ou reforma?</legend>
+    <div class="chips">
+     <label><input type="radio" name="cob" value="Não" checked><span>Não</span></label>
+     <label><input type="radio" name="cob" value="Sim"><span>Sim</span></label>
+    </div>
+   </fieldset>
+   <div class="duas">
+    <label class="campo"><span>Local do corpo</span><input name="local" placeholder="Ex.: antebraço direito"></label>
+    <label class="campo"><span>Tamanho</span>
+     <select name="tamanho"><option>Até 10 cm</option><option selected>Médio (10 a 20 cm)</option><option>Grande (mais de 20 cm)</option><option>Fechamento</option></select></label>
+   </div>
+   <label class="campo"><span>Conte a sua ideia</span><textarea name="ideia" id="ideia" rows="4" placeholder="Significado, referências, se é a primeira tattoo..."></textarea></label>
+   <label class="campo"><span>Disponibilidade</span>
+    <select name="quando"><option>Indiferente</option><option>Dias de semana</option><option>Sábados</option></select></label>
+   <p class="erro" id="erro" hidden>Escreva o seu nome para continuar.</p>
+   <button class="btn p" type="submit">Enviar pelo WhatsApp</button>
+   <small id="cop">A mensagem é copiada e o WhatsApp do Iago abre. É só colar e anexar as referências.</small>
+  </form>
  </div>
 </section>
 
@@ -257,8 +333,18 @@ addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key=='Escape')lb.hidden=
 
 document.getElementById('pares').innerHTML=[1,2,3,4].map(i=>`<div class="par rv"><figure><img src="img/h/${i}a.webp" alt="Ideia do cliente"><figcaption>Pediu</figcaption></figure><figure><img src="img/h/${i}b.webp" alt="Tatuagem entregue"><figcaption>Entreguei</figcaption></figure></div>`).join('');
 
-const msg=document.getElementById('msg').textContent;
-['wa','dm'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText(msg).then(()=>{document.getElementById('cop').textContent='Mensagem copiada. É só colar e completar.'}).catch(()=>{})}));
+const form=document.getElementById('form'),erro=document.getElementById('erro');
+form.addEventListener('submit',e=>{e.preventDefault();const f=new FormData(form),nome=(f.get('nome')||'').trim();
+ if(!nome){erro.hidden=false;form.nome.focus();return}erro.hidden=true;
+ const l=['Olá, Iago! Sou *'+nome+'* e quero um orçamento.','','*Tema:* '+f.get('tema'),'*Cobertura/reforma:* '+f.get('cob'),'*Local do corpo:* '+((f.get('local')||'').trim()||'a definir'),'*Tamanho:* '+f.get('tamanho'),'*Disponibilidade:* '+f.get('quando')];
+ const ideia=(f.get('ideia')||'').trim();if(ideia)l.push('','*Ideia:* '+ideia);l.push('','(pedido enviado pelo site)');
+ const t=l.join('\n');
+ try{navigator.clipboard.writeText(t)}catch(_){}
+ document.getElementById('cop').textContent='Mensagem copiada. No WhatsApp, é só colar e enviar.';
+ window.open('https://wa.me/message/L3C7RKFIZAINI1','_blank','noopener')});
+// "Quero uma assim" no lightbox
+const q=document.createElement('button');q.className='btn quero';q.textContent='Quero uma assim';lb.appendChild(q);
+q.addEventListener('click',e=>{e.stopPropagation();lb.hidden=true;const id=document.getElementById('ideia');id.value='Vi no site uma peça assim (foto '+(vis[li].i+1)+' do portfólio) e quero algo parecido. ';document.getElementById('marcar').scrollIntoView();setTimeout(()=>id.focus({preventScroll:true}),600)});
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
